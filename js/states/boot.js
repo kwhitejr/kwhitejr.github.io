@@ -1,27 +1,32 @@
-JumpPunch.Boot = function () {
+Shots.Boot = function () {
 
 };
 
-JumpPunch.Boot.prototype.preload = function () {
-  //will preload all assets
-  //using functional and declarative programming, not imperatives!
+Shots.Boot.prototype.preload = function () {
+  // will preload all assets
+  // using functional and declarative programming, not imperatives!
   // `boot.js` will run functions for every asset declared in `assets.js`
+  Shots.game.load.audio('normal-walk', 'assets/audio/normal-walk.mp3');
+  Shots.game.load.audio('jump', 'assets/audio/jump.mp3');
+  Shots.game.load.audio('zoidberg', 'assets/audio/zoidberg.mp3');
+  Shots.game.load.audio('ninja-hit1', 'assets/audio/ninja-hit1.mp3');
+
 
   // autoLoad each asset by type
-  Object.keys(JumpPunch.ASSETS).forEach(function(type) {
-    for (var asset in JumpPunch.ASSETS[type]) {
-      JumpPunch.game.load[ type.toLowerCase() ](
-        JumpPunch.ASSETS[type][ asset ].name,
-        JumpPunch.ASSETS[type][ asset ].path,
-        JumpPunch.ASSETS[type][ asset ].width,
-        JumpPunch.ASSETS[type][ asset ].height,
-        JumpPunch.ASSETS[type][ asset ].frames
+  Object.keys(Shots.ASSETS).forEach(function(type) {
+    for (var asset in Shots.ASSETS[type]) {
+      Shots.game.load[ type.toLowerCase() ](
+        Shots.ASSETS[type][ asset ].name,
+        Shots.ASSETS[type][ asset ].path,
+        Shots.ASSETS[type][ asset ].width,
+        Shots.ASSETS[type][ asset ].height,
+        Shots.ASSETS[type][ asset ].frames
       );
     }
   });
 };
 
-JumpPunch.Boot.prototype.create = function () {
-  // switch to game state
-  this.state.start( JumpPunch.STATES.GAME );
+Shots.Boot.prototype.create = function () {
+  // switch to game state (file path)
+  this.state.start( Shots.STATES.GAME );
 };
